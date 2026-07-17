@@ -231,3 +231,79 @@ These rules apply to code that calls the Windows API:
 - Keep Windows headers and macros behind a platform layer where practical. Define `NOMINMAX` before including `<windows.h>` when needed, rather than working around `min` and `max` macros throughout the codebase.
 - Use fixed-width types for serialized or cross-platform data; use Win32 types where the operating-system ABI requires them.
 - Keep message handling concise and delegate application work to project-owned functions. Return `DefWindowProcW` for messages not handled by the application.
+
+## VHDL (.vhd)
+
+- Always include `library ieee;` and `use ieee.std_logic_1164.all;` at the top of each module, with additional numeric packages as needed.
+- Entities and architectures use lowercase names with underscores (`px_pro`, `cpu_core`, `ppu_vga`) and `rtl` for the architecture name when hand-written.
+- Port lists are aligned and use named associations in `port map` blocks for clarity.
+- Signal names use lowercase with descriptive suffixes such as `_s`, and initialization is done inline where helpful.
+- Component instances are labeled with a `u_` or descriptive prefix (`clock`, `u_cpu`, `u_ppu`) and follow a consistent block structure.
+- Synchronous logic is expressed using `process(clk)` and `if rising_edge(clk)` with nested `if` statements for state updates.
+- Constants are declared in lowercase with descriptive names for timing parameters and use integer types for readability.
+- Vector ranges use `downto` consistently for buses and counters.
+- Active-low signals are indicated with a `_n` suffix and commented inline to explain polarity.
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity cpu_core is
+  port (
+    clk   : in std_logic;
+    reset : in std_logic
+  );
+end cpu_core;
+
+architecture rtl of cpu_core is
+  signal enable_s : std_logic := '1';
+begin
+  u_cpu: entity work.T65
+    port map(
+      clk    => clk,
+      res_n  => reset, -- active low
+      enable => enable_s
+    );
+end rtl;
+```
+
+## 6502 Assembly (.s)
+
+- Start by declaring the target CPU with `.setcpu "6502"` before other directives.
+- Use semicolon comments, with banner-style separators to organize sections like code, data, and vectors.
+- Constants are defined in uppercase with `=` and hexadecimal literals are prefixed with `$` (e.g., `DEST = $0200`).
+- Segment directives (`.segment "CODE"`, `"RODATA"`, `"VECTORS"`) are used to separate executable code, data, and interrupt vectors.
+- Labels are left-aligned with a trailing colon; instructions are indented for readability.
+- Inline comments describe register intent and control flow, especially around branches and stack setup.
+- Loops use clearly named labels like `copy_loop` and `forever` with a tight branch/jump structure.
+- Null-terminated strings are emitted with `.byte` and a trailing `0` sentinel in the data segment.
+- Interrupt handlers are minimal stubs using `rti`, and vectors are defined with `.word` entries in the `VECTORS` segment.
+
+```asm
+        .setcpu "6502"
+
+DEST    = $0200          ; RAM address for output
+
+        .segment "CODE"
+reset:
+        sei               ; disable IRQs
+        ldx #$FF
+        txs
+
+copy_loop:
+        lda message, y
+        beq done
+        sta DEST, y
+        iny
+        bne copy_loop
+
+done:
+        jmp done
+
+        .segment "RODATA"
+message:
+        .byte "Hello", 0
+
+        .segment "VECTORS"
+        .word reset
+```
