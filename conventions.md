@@ -232,6 +232,19 @@ These rules apply to code that calls the Windows API:
 - Use fixed-width types for serialized or cross-platform data; use Win32 types where the operating-system ABI requires them.
 - Keep message handling concise and delegate application work to project-owned functions. Return `DefWindowProcW` for messages not handled by the application.
 
+## Qt
+
+- Use Qt types at Qt API boundaries and standard-library types in platform-independent code. Convert between them at the boundary.
+- Use `QStringLiteral` for fixed strings and `tr()` or `QCoreApplication::translate()` for translatable user-visible text.
+- Parent heap-allocated `QObject`s where practical. Store parent-owned objects as non-owning raw pointers and do not delete them manually.
+- Keep GUI objects on the GUI thread; use queued signals and slots across threads.
+- Add `Q_OBJECT` only when meta-object features are required.
+- Prefer compiler-checked function-pointer or lambda connections. Give capturing lambdas a context object.
+- Include Qt types used by value or as base classes; forward-declare types used only through pointers or references.
+- List `Q_OBJECT` headers in the CMake target and explicitly find and link every Qt module used.
+- Preserve Qt-prescribed names for overrides and interfaces; use project naming conventions for project-defined Qt APIs.
+- Prefer cross-platform Qt APIs and isolate platform-specific integration.
+
 ## VHDL (.vhd)
 
 - Always include `library ieee;` and `use ieee.std_logic_1164.all;` at the top of each module, with additional numeric packages as needed.

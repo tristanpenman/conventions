@@ -21,5 +21,6 @@ The [conventions.md](conventions.md) file currently covers the following areas:
 * Box2D
 * Dear ImGui
 * Win32
+* Qt
 * VHDL
 * 6502 Assembly
