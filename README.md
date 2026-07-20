@@ -39,3 +39,18 @@ The [hardware.md](hardware.md) conventions currently cover:
 * VHDL (.vhd)
 
 Verilog will be added at later date.
+
+## JavaScript
+
+The [javascript.md](javascript.md) conventions currently cover:
+
+* Core Guidelines
+  * Project and Tooling Choices
+  * JavaScript Style
+  * Data and Asynchronous Code
+  * Browser and UI Code
+  * Example
+* Integrations
+  * Vue.js
+  * React
+* Testing
