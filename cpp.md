@@ -1,10 +1,10 @@
-# Conventions
+# C++
 
 These conventions apply to project-owned C++ and CUDA code. Third-party code should not be reformatted merely to match this document. At an integration boundary, retain the spelling and idioms of the external API, but use the project conventions inside project-owned wrappers and implementations.
 
 When modifying older code, apply these conventions to the code being changed when doing so is low risk. Avoid unrelated, file-wide formatting or renaming changes.
 
-## C++
+## Core Guidelines
 
 ### Files and formatting
 
@@ -159,7 +159,9 @@ private:
 }  // namespace example
 ```
 
-## CUDA
+## Integrations
+
+### CUDA
 
 CUDA code follows the C++ conventions above, with these additions:
 
@@ -183,7 +185,7 @@ __global__ void sigmoidKernel(T* devValues, int valueCount)
 }
 ```
 
-## Oxygine
+### Oxygine
 
 These rules apply when Oxygine is used:
 
@@ -197,7 +199,7 @@ These rules apply when Oxygine is used:
 - Raw pointers are acceptable for non-owning engine callbacks when required by the Oxygine API. Make ownership clear at the boundary.
 - Follow the surrounding subsystem for engine-owned event and flag names; project-owned values use `kPascalCase`.
 
-## Box2D
+### Box2D
 
 These rules apply when Box2D is used:
 
@@ -207,7 +209,7 @@ These rules apply when Box2D is used:
 - Keep unit conversion and coordinate-system conversion at clear boundaries. Name converted values explicitly when units are not obvious.
 - Avoid changing the physics world while it is locked or from callbacks when the API prohibits it; queue the project operation for a safe point instead.
 
-## Dear ImGui
+### Dear ImGui
 
 These rules apply when Dear ImGui is used:
 
@@ -219,7 +221,7 @@ These rules apply when Dear ImGui is used:
 - Keep persistent UI state in an owning application object rather than in unrelated global variables.
 - Isolate optional backend-specific code from application UI code where practical.
 
-## Win32
+### Win32
 
 These rules apply to code that calls the Windows API:
 
@@ -232,7 +234,7 @@ These rules apply to code that calls the Windows API:
 - Use fixed-width types for serialized or cross-platform data; use Win32 types where the operating-system ABI requires them.
 - Keep message handling concise and delegate application work to project-owned functions. Return `DefWindowProcW` for messages not handled by the application.
 
-## Qt
+### Qt
 
 - Use Qt types at Qt API boundaries and standard-library types in platform-independent code. Convert between them at the boundary.
 - Use `QStringLiteral` for fixed strings and `tr()` or `QCoreApplication::translate()` for translatable user-visible text.
@@ -244,79 +246,3 @@ These rules apply to code that calls the Windows API:
 - List `Q_OBJECT` headers in the CMake target and explicitly find and link every Qt module used.
 - Preserve Qt-prescribed names for overrides and interfaces; use project naming conventions for project-defined Qt APIs.
 - Prefer cross-platform Qt APIs and isolate platform-specific integration.
-
-## VHDL (.vhd)
-
-- Always include `library ieee;` and `use ieee.std_logic_1164.all;` at the top of each module, with additional numeric packages as needed.
-- Entities and architectures use lowercase names with underscores (`px_pro`, `cpu_core`, `ppu_vga`) and `rtl` for the architecture name when hand-written.
-- Port lists are aligned and use named associations in `port map` blocks for clarity.
-- Signal names use lowercase with descriptive suffixes such as `_s`, and initialization is done inline where helpful.
-- Component instances are labeled with a `u_` or descriptive prefix (`clock`, `u_cpu`, `u_ppu`) and follow a consistent block structure.
-- Synchronous logic is expressed using `process(clk)` and `if rising_edge(clk)` with nested `if` statements for state updates.
-- Constants are declared in lowercase with descriptive names for timing parameters and use integer types for readability.
-- Vector ranges use `downto` consistently for buses and counters.
-- Active-low signals are indicated with a `_n` suffix and commented inline to explain polarity.
-
-```vhdl
-library ieee;
-use ieee.std_logic_1164.all;
-
-entity cpu_core is
-  port (
-    clk   : in std_logic;
-    reset : in std_logic
-  );
-end cpu_core;
-
-architecture rtl of cpu_core is
-  signal enable_s : std_logic := '1';
-begin
-  u_cpu: entity work.T65
-    port map(
-      clk    => clk,
-      res_n  => reset, -- active low
-      enable => enable_s
-    );
-end rtl;
-```
-
-## 6502 Assembly (.s)
-
-- Start by declaring the target CPU with `.setcpu "6502"` before other directives.
-- Use semicolon comments, with banner-style separators to organize sections like code, data, and vectors.
-- Constants are defined in uppercase with `=` and hexadecimal literals are prefixed with `$` (e.g., `DEST = $0200`).
-- Segment directives (`.segment "CODE"`, `"RODATA"`, `"VECTORS"`) are used to separate executable code, data, and interrupt vectors.
-- Labels are left-aligned with a trailing colon; instructions are indented for readability.
-- Inline comments describe register intent and control flow, especially around branches and stack setup.
-- Loops use clearly named labels like `copy_loop` and `forever` with a tight branch/jump structure.
-- Null-terminated strings are emitted with `.byte` and a trailing `0` sentinel in the data segment.
-- Interrupt handlers are minimal stubs using `rti`, and vectors are defined with `.word` entries in the `VECTORS` segment.
-
-```asm
-        .setcpu "6502"
-
-DEST    = $0200          ; RAM address for output
-
-        .segment "CODE"
-reset:
-        sei               ; disable IRQs
-        ldx #$FF
-        txs
-
-copy_loop:
-        lda message, y
-        beq done
-        sta DEST, y
-        iny
-        bne copy_loop
-
-done:
-        jmp done
-
-        .segment "RODATA"
-message:
-        .byte "Hello", 0
-
-        .segment "VECTORS"
-        .word reset
-```

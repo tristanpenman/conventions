@@ -6,9 +6,17 @@ These conventions are designed to be human-readable and useful for coding assist
 
 ---
 
-The [conventions.md](conventions.md) file currently covers the following areas:
+## ASM
 
-* C++
+The [asm.md](asm.md) conventions currently cover:
+
+* 6502 Assembly (.s)
+
+## C++
+
+The [cpp.md](C++) conventions currently include the following areas:
+
+* Core Guidelines
   * Files and formatting
   * Names
   * Headers and includes
@@ -16,11 +24,18 @@ The [conventions.md](conventions.md) file currently covers the following areas:
   * Types, ownership, and interfaces
   * Comments and documentation
   * Example
-* CUDA
-* Oxygine
-* Box2D
-* Dear ImGui
-* Win32
-* Qt
-* VHDL
-* 6502 Assembly
+* Integrations
+  * CUDA
+  * Oxygine
+  * Box2D
+  * Dear ImGui
+  * Win32
+  * Qt
+
+## Hardware
+
+The [hardware.md](hardware.md) conventions currently cover:
+
+* VHDL (.vhd)
+
+Verilog will be added at later date.
