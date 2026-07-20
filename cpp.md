@@ -6,7 +6,7 @@ When modifying older code, apply these conventions to the code being changed whe
 
 ## Core Guidelines
 
-### Files and formatting
+### Code Style
 
 - Use `.h` for headers and the source extension already established by the project (`.cc` or `.cpp`) for implementations.
 - Indent with four spaces. Do not use tabs.
@@ -37,7 +37,7 @@ Result calculateResult(
 }
 ```
 
-### Names
+### Naming
 
 - Classes, structs, unions, type aliases, and enum types use `PascalCase`.
 - Functions and methods use `camelCase`.

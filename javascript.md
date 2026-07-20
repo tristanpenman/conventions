@@ -4,14 +4,7 @@ These conventions provide sensible defaults for JavaScript projects. Follow the 
 
 ## Core Guidelines
 
-### Project and Tooling Choices
-
-- Prefer ES modules for new projects.
-- Introduce TypeScript, frameworks, state management, or other major dependencies only when the project benefits from them.
-- Keep dependencies purposeful and commit the package-manager lockfile.
-- Run the relevant formatter, linter, tests, and build before submitting changes.
-
-### JavaScript Style
+### Code Style
 
 - Let the project's formatter define whitespace, quotes, semicolons, and line wrapping. When no formatter exists, prefer two-space indentation and follow nearby code.
 - Use `const` by default, `let` when reassignment is necessary, and avoid `var`.
@@ -110,7 +103,16 @@ export async function loadActiveUsers(userIds, client) {
 - Use stable keys and do not generate them during render.
 - Provide deliberate loading, empty, and error states for asynchronous screens.
 
-## CSS Conventions
+## Tooling
+
+### Project and Tooling Choices
+
+- Prefer ES modules for new projects.
+- Introduce TypeScript, frameworks, state management, or other major dependencies only when the project benefits from them.
+- Keep dependencies purposeful and commit the package-manager lockfile.
+- Run the relevant formatter, linter, tests, and build before submitting changes.
+
+### CSS Conventions
 
 - Follow the project's existing styling approach.
 - Keep component-specific styles local and reuse shared design tokens.
