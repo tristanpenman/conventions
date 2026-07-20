@@ -18,7 +18,7 @@ The [cpp.md](C++) conventions currently include the following areas:
 
 * Core Guidelines
   * Files and formatting
-  * Names
+  * Naming
   * Headers and includes
   * Namespaces
   * Types, ownership, and interfaces
@@ -32,25 +32,33 @@ The [cpp.md](C++) conventions currently include the following areas:
   * Win32
   * Qt
 
-## Hardware
-
-The [hardware.md](hardware.md) conventions currently cover:
-
-* VHDL (.vhd)
-
-Verilog will be added at later date.
-
 ## JavaScript
 
 The [javascript.md](javascript.md) conventions currently cover:
 
 * Core Guidelines
-  * Project and Tooling Choices
-  * JavaScript Style
+  * Code Style
   * Data and Asynchronous Code
   * Browser and UI Code
   * Example
 * Integrations
   * Vue.js
   * React
+* Tooling
+  * Project and Tooling Choices
+  * CSS Conventions
 * Testing
+
+## VHDL
+
+The [vhdl.md](vhdl.md) conventions currently cover:
+
+* Core Guidelines
+  * Code Style
+  * Naming
+  * Example
+* Best Practices
+  * Prefer IEEE `numeric_std`
+  * Clock enables instead of deriving clocks from data bits
+  * De-duplicate common logic with reusable packages and generics
+  * Strengthen verification
