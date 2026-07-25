@@ -12,12 +12,22 @@ The [asm.md](asm.md) conventions currently cover:
 
 * 6502 Assembly (.s)
 
+## Bash
+
+The [bash.md](bash.md) conventions currently cover:
+
+* Core Guidelines
+  * Code Style
+  * Naming
+  * Paths
+  * Example
+
 ## C++
 
 The [cpp.md](C++) conventions currently include the following areas:
 
 * Core Guidelines
-  * Files and formatting
+  * Code Style
   * Naming
   * Headers and includes
   * Namespaces
