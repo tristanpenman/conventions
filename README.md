@@ -42,6 +42,29 @@ The [cpp.md](C++) conventions currently include the following areas:
   * Win32
   * Qt
 
+## Golang
+
+The [golang.md](golang.md) conventions currently cover:
+
+* Core Guidelines
+  * Structure
+  * Code and APIs
+  * Reliability
+  * Tests
+* Optional Idioms
+  * Data and protocols
+  * Concurrency patterns
+  * Configuration
+  * Commands and embedded frontends
+  * Documentation
+* Integrations
+  * Pion
+  * MQTT
+  * TinyGo
+  * Serial
+  * Periph
+  * Gobot
+
 ## JavaScript
 
 The [javascript.md](javascript.md) conventions currently cover:
