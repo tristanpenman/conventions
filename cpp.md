@@ -47,7 +47,6 @@ Result calculateResult(
 - Constants, `constexpr` values, and enumerators use `kPascalCase`: `kBufferSize`, `kInvalidArgument`.
 - Preprocessor macros use `ALL_CAPS`. Prefer typed constants and functions to macros.
 - Template parameters use `PascalCase`: `ValueType` or `T`.
-- CUDA kernels use `camelCase` with a `Kernel` suffix.
 
 Do not rename symbols owned by an external library or operating-system API. Where a project must implement a prescribed callback or interface, retain its required name. Project wrappers around such APIs use the normal project naming rules.
 
