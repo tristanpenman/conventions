@@ -22,6 +22,22 @@ The [bash.md](bash.md) conventions currently cover:
   * Paths
   * Example
 
+## C
+
+The [c.md](C) conventions currently cover:
+
+* Core Guidelines
+  * Code Style
+  * Naming
+  * Headers and includes
+  * Types, ownership, and interfaces
+  * Control flow and errors
+  * Comments and documentation
+  * Compatibility
+  * Example
+* Integrations
+  * N64
+
 ## C++
 
 The [cpp.md](C++) conventions currently include the following areas:
