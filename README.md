@@ -8,13 +8,13 @@ These conventions are designed to be human-readable and useful for coding assist
 
 ## ASM
 
-The [asm.md](asm.md) conventions currently cover:
+The [ASM](asm.md) conventions currently cover:
 
 * 6502 Assembly (.s)
 
 ## Bash
 
-The [bash.md](bash.md) conventions currently cover:
+The [Bash](bash.md) conventions currently cover:
 
 * Core Guidelines
   * Code Style
@@ -24,7 +24,7 @@ The [bash.md](bash.md) conventions currently cover:
 
 ## C
 
-The [c.md](C) conventions currently cover:
+The [C](c.md) conventions currently cover:
 
 * Core Guidelines
   * Code Style
@@ -40,7 +40,7 @@ The [c.md](C) conventions currently cover:
 
 ## C++
 
-The [cpp.md](C++) conventions currently include the following areas:
+The [C++](cpp.md) conventions currently include the following areas:
 
 * Core Guidelines
   * Code Style
@@ -60,7 +60,7 @@ The [cpp.md](C++) conventions currently include the following areas:
 
 ## Golang
 
-The [golang.md](golang.md) conventions currently cover:
+The [Go](golang.md) conventions currently cover:
 
 * Core Guidelines
   * Structure
@@ -83,7 +83,7 @@ The [golang.md](golang.md) conventions currently cover:
 
 ## JavaScript
 
-The [javascript.md](javascript.md) conventions currently cover:
+The [JavaScript](javascript.md) conventions currently cover:
 
 * Core Guidelines
   * Code Style
@@ -100,7 +100,7 @@ The [javascript.md](javascript.md) conventions currently cover:
 
 ## VHDL
 
-The [vhdl.md](vhdl.md) conventions currently cover:
+The [VHDL](vhdl.md) conventions currently cover:
 
 * Core Guidelines
   * Code Style
