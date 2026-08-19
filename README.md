@@ -98,6 +98,20 @@ The [JavaScript](javascript.md) conventions currently cover:
   * CSS Conventions
 * Testing
 
+## Verilog
+
+The [Verilog](verilog.md) conventions currently cover:
+
+* Core Guidelines
+  * Code Style
+  * Naming
+  * Example
+* Best Practices
+  * Make widths and signedness explicit
+  * Clock enables instead of deriving clocks from data bits
+  * De-duplicate common logic with modules, parameters, and headers
+  * Strengthen verification
+
 ## VHDL
 
 The [VHDL](vhdl.md) conventions currently cover:
